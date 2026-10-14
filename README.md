@@ -6,12 +6,14 @@
 
 <p align="center">
   <a href="https://devpost.com/software/netwatch-chrome-extension-for-child-safety"><img src="https://img.shields.io/badge/Devpost-Official%20Submission-003E54?style=for-the-badge&logo=devpost&logoColor=white" alt="Devpost Submission"></a>
+  <a href="https://youtu.be/Y9dQcmNQt4Q"><img src="https://img.shields.io/badge/YouTube-Installation%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Installation Video"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Manifest V3">
   <img src="https://img.shields.io/badge/Platform-Chrome%20%7C%20Edge%20%7C%20Brave-3F5E4D?style=for-the-badge" alt="Platforms">
   <img src="https://img.shields.io/badge/Sync%20Speed-3.5s%20Remote%20Push-D94825?style=for-the-badge" alt="3.5s Sync">
 </p>
 
 > **Devpost Project**: [https://devpost.com/software/netwatch-chrome-extension-for-child-safety](https://devpost.com/software/netwatch-chrome-extension-for-child-safety)  
+> **Installation & Setup Video**: [https://youtu.be/Y9dQcmNQt4Q](https://youtu.be/Y9dQcmNQt4Q)  
 > **One-Sentence Tagline**: *A complete family safety guardian and parental command center that helps parents monitor their children's online browsing activity, enforce digital curfews, block harmful sites, and protect private personal information inside AI prompts.*
 
 ---
@@ -112,6 +114,10 @@ NetWatch/
 ---
 
 ## 🚀 Quickstart: Setting Up Child & Parent Devices
+
+> 📺 **Watch the Video Walkthrough**: [https://youtu.be/Y9dQcmNQt4Q](https://youtu.be/Y9dQcmNQt4Q)  
+> [![NetWatch Step-by-Step Installation & Setup Guide](https://img.youtube.com/vi/Y9dQcmNQt4Q/maxresdefault.jpg)](https://youtu.be/Y9dQcmNQt4Q)  
+> *Click the video above or visit [`https://youtu.be/Y9dQcmNQt4Q`](https://youtu.be/Y9dQcmNQt4Q) to watch how to load the unpacked extension, pair Child & Parent profiles, and test live AI protection.*
 
 ### 1. Relay Server (Live Cloud or Local)
 NetWatch features a resilient **dual-endpoint failover architecture**:
