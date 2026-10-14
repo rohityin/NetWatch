@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetWatch - Setup Wizard</title>
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+  <div class="wizard-container">
+    <!-- Header -->
+    <header class="wizard-header">
+      <div class="logo">
+        <span class="shield-icon">🛡️</span>
+        <h1>NetWatch <span id="headerTag" class="tag">Family Setup</span></h1>
+      </div>
+      <div id="stepIndicator" class="step-indicator">
+        <div class="step-dot active" data-step="0">1</div>
+        <div class="step-line"></div>
+        <div class="step-dot" data-step="1">2</div>
+        <div class="step-line"></div>
+        <div class="step-dot" data-step="2">3</div>
+        <div class="step-line"></div>
+        <div class="step-dot" data-step="3">4</div>
+      </div>
+    </header>
+
+    <!-- STEP 0: Role Selection (Parent or Child) -->
+    <div id="stepRole" class="wizard-step active">
+      <div class="step-content center-text">
+        <h2>Who is using this computer?</h2>
+        <p class="subtitle">
+          Choose the role for this browser. You can set this up as a protected child device or as a parent command center.
+        </p>
+
+        <div class="role-cards-grid">
+          <div id="selectChildRole" class="role-card">
+            <div class="role-icon">🛡️👶</div>
+            <h3>Child's Device</h3>
+            <p>Activates local threat blocking, predatory AI companion defense, and prompt PII privacy shields.</p>
+            <span class="role-btn">Configure Child Shield →</span>
+          </div>
+
+          <div id="selectParentRole" class="role-card">
+            <div class="role-icon">📱👨‍👩‍👧</div>
+            <h3>Parent / Guardian</h3>
+            <p>Activates the administrative command center to monitor live AI safety scores and manage family rules remotely.</p>
+            <span class="role-btn">Configure Parent Hub →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- CHILD FLOW -->
+    <!-- ======================================================== -->
+
+    <!-- Child Step 1: Pairing Code -->
+    <div id="stepChild1" class="wizard-step">
+      <div class="step-content center-text">
+        <h2>Link This Browser with Your Parent</h2>
+        <p class="subtitle">
+          Show the 6-digit code below to your parent. They will type it into their NetWatch Parent Command Center.
+        </p>
+
+        <div class="pairing-card">
+          <div class="code-label">YOUR FAMILY PAIRING CODE:</div>
+          <div id="childPairingCode" class="huge-code">--- ---</div>
+          <div id="pairingLiveStatus" class="live-status">
+            <span class="pulsing-dot"></span> Waiting for parent to connect...
+          </div>
+        </div>
+
+        <p class="hint">When your parent enters this code, this screen will advance automatically!</p>
+      </div>
+
+      <div class="wizard-footer">
+        <button id="btnChild1Back" class="btn secondary">← Change Role</button>
+        <button id="btnChild1Next" class="btn primary">I've Linked / Continue →</button>
+      </div>
+    </div>
+
+    <!-- Child Step 2: 3 Smart Rules -->
+    <div id="stepChild2" class="wizard-step">
+      <div class="step-content">
+        <h2>3 Smart Rules for Safe AI Use</h2>
+        <p class="subtitle">
+          AI chatbots can be helpful for learning, but remember these basic safety rules:
+        </p>
+
+        <div class="rules-list">
+          <div class="rule-card">
+            <div class="rule-num">1</div>
+            <div class="rule-body">
+              <h3>AI bots are programs, not real human friends</h3>
+              <p>Chatbots can sound friendly, but they do not have real feelings and store everything you write into computer memory.</p>
+            </div>
+          </div>
+          <div class="rule-card">
+            <div class="rule-num">2</div>
+            <div class="rule-body">
+              <h3>Never share personal identity details</h3>
+              <p>Keep your full name, home address, school, phone number, and passwords private. If NetWatch warns you, click <strong>✨ Sanitize Prompt</strong>.</p>
+            </div>
+          </div>
+          <div class="rule-card">
+            <div class="rule-num">3</div>
+            <div class="rule-body">
+              <h3>Talk to a real person if something feels wrong</h3>
+              <p>If an AI bot or website ever makes you feel uncomfortable, confused, or sad, close the tab and talk to a parent or teacher!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wizard-footer">
+        <button id="btnChild2Back" class="btn secondary">← Back</button>
+        <button id="btnChild2Next" class="btn primary">I Understand →</button>
+      </div>
+    </div>
+
+    <!-- Child Step 3: Finish -->
+    <div id="stepChild3" class="wizard-step">
+      <div class="step-content center-text">
+        <div class="hero-icon">🎉🛡️</div>
+        <h2>NetWatch Shield Active!</h2>
+        <p class="subtitle">
+          This browser is now protected. NetWatch runs quietly to keep your identity and browsing safe.
+        </p>
+        <div class="shield-status-box">
+          <div class="shield-badge-row">
+            <span class="green-indicator">●</span>
+            <strong>Child Shield: Enforcing Family Policies</strong>
+          </div>
+          <p>Click the 🛡️ NetWatch icon in the top toolbar anytime to see your safe status.</p>
+        </div>
+      </div>
+
+      <div class="wizard-footer center-footer">
+        <button id="btnChildFinish" class="btn primary-large">Start Safe Browsing</button>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- PARENT FLOW -->
+    <!-- ======================================================== -->
+
+    <!-- Parent Step 1: Create Master PIN -->
+    <div id="stepParent1" class="wizard-step">
+      <div class="step-content">
+        <h2>Create Master Parent PIN</h2>
+        <p class="subtitle">
+          Set a secure 4-digit PIN. This prevents children from modifying policies or switching device roles.
+        </p>
+
+        <div class="pin-setup-box">
+          <label for="createPinInput">Choose 4-Digit Parent PIN:</label>
+          <input type="password" id="createPinInput" placeholder="••••" maxlength="4">
+
+          <label for="confirmPinInput">Confirm Parent PIN:</label>
+          <input type="password" id="confirmPinInput" placeholder="••••" maxlength="4">
+
+          <div id="pinSetupError" class="feedback-msg"></div>
+        </div>
+      </div>
+
+      <div class="wizard-footer">
+        <button id="btnParent1Back" class="btn secondary">← Change Role</button>
+        <button id="btnParent1Next" class="btn primary">Set PIN & Continue →</button>
+      </div>
+    </div>
+
+    <!-- Parent Step 2: Link Child Device -->
+    <div id="stepParent2" class="wizard-step">
+      <div class="step-content">
+        <h2>Connect Your Child's Device</h2>
+        <p class="subtitle">
+          Open the NetWatch extension on your child's browser to view their 6-digit Family Pairing Code.
+        </p>
+
+        <div class="pairing-box-container">
+          <div class="input-form">
+            <label for="parentPairCode">Enter Child's 6-Digit Code:</label>
+            <input type="text" id="parentPairCode" placeholder="e.g. 749201" maxlength="6">
+
+            <div class="server-endpoint-hint">
+              Relay Server: <code id="displayRelayUrl">http://localhost:3000</code>
+            </div>
+
+            <div id="parentPairStatus" class="feedback-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wizard-footer">
+        <button id="btnParent2Back" class="btn secondary">← Back</button>
+        <div class="footer-actions">
+          <button id="btnParent2Skip" class="btn text">Skip for Now</button>
+          <button id="btnParent2Pair" class="btn primary">Verify & Pair Device →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parent Step 3: Policy Configuration -->
+    <div id="stepParent3" class="wizard-step">
+      <div class="step-content">
+        <h2>Choose Family Protection Policy</h2>
+        <p class="subtitle">
+          Select how strictly AI platforms and websites should be monitored. You can change this anytime remotely.
+        </p>
+
+        <div class="policy-options">
+          <label class="policy-radio selected">
+            <input type="radio" name="parentMode" value="STRICT" checked>
+            <div class="radio-content">
+              <div class="radio-title">
+                🛡️ Strict Protection Mode <span class="badge-tag green">Recommended</span>
+              </div>
+              <p>Pre-emptively blocks predatory AI companions, uncensored chatbots, deepfake generators, and halts prompt PII leaks.</p>
+            </div>
+          </label>
+
+          <label class="policy-radio">
+            <input type="radio" name="parentMode" value="SUPERVISED">
+            <div class="radio-content">
+              <div class="radio-title">👁️ Supervised AI Mode</div>
+              <p>Allows research and educational LLMs (ChatGPT, Claude) with in-page PII prompt shields active.</p>
+            </div>
+          </label>
+
+          <label class="policy-radio">
+            <input type="radio" name="parentMode" value="STUDY_ONLY">
+            <div class="radio-content">
+              <div class="radio-title">📚 Study Only Mode</div>
+              <p>Restricts AI exclusively to approved homework and educational research tools.</p>
+            </div>
+          </label>
+        </div>
+
+        <div class="quick-blocks">
+          <div class="section-label">Quickly Block Distracting Platforms:</div>
+          <div class="tags-grid">
+            <label class="tag-checkbox"><input type="checkbox" value="roblox.com"> <span>Roblox</span></label>
+            <label class="tag-checkbox"><input type="checkbox" value="tiktok.com"> <span>TikTok</span></label>
+            <label class="tag-checkbox"><input type="checkbox" value="discord.com"> <span>Discord</span></label>
+            <label class="tag-checkbox"><input type="checkbox" value="twitch.tv"> <span>Twitch</span></label>
+            <label class="tag-checkbox"><input type="checkbox" value="reddit.com"> <span>Reddit</span></label>
+            <label class="tag-checkbox"><input type="checkbox" value="omegle.com" checked> <span>Stranger Video Chats</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="wizard-footer">
+        <button id="btnParent3Back" class="btn secondary">← Back</button>
+        <button id="btnParent3Next" class="btn primary">Apply Policy →</button>
+      </div>
+    </div>
+
+    <!-- Parent Step 4: Ready -->
+    <div id="stepParent4" class="wizard-step">
+      <div class="step-content center-text">
+        <div class="hero-icon">🎉👨‍👩‍👧</div>
+        <h2>Parent Command Center Ready!</h2>
+        <p class="subtitle">
+          Your administrative hub is ready. You can now monitor child activity and push policy updates in real time.
+        </p>
+
+        <div class="summary-card">
+          <div class="summary-row">
+            <span class="label">Device Role:</span>
+            <span class="val text-blue">Parent Command Center</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Paired Child:</span>
+            <span id="sumDevice" class="val">Connected [Active]</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Enforced Policy:</span>
+            <span id="sumMode" class="val">Strict Mode</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wizard-footer center-footer">
+        <button id="btnParentFinish" class="btn primary-large">Open Command Center</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="onboarding.js"></script>
+</body>
+</html>

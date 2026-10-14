@@ -1,0 +1,12 @@
+{
+  "name": "netwatch-relay-server",
+  "version": "1.0.0",
+  "description": "Secure local and cloud synchronization relay for NetWatch Child & Parent browser extensions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["netwatch", "child-safety", "parental-controls", "chrome-extension"],
+  "author": "NetWatch Team",
+  "license": "MIT"
+}
