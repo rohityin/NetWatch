@@ -7,7 +7,33 @@
  * - PARENT MODE: Administrative hub, remote child monitoring, policy dispatcher, CSV auditing
  */
 
-const RELAY_BASE_URL = 'http://localhost:3000';
+const CLOUD_RELAY_URL = 'https://netwatch-w7c2.onrender.com';
+const LOCAL_RELAY_URL = 'http://localhost:3000';
+let activeRelayUrl = CLOUD_RELAY_URL;
+
+async function fetchRelay(endpoint, options = {}, timeoutMs = 4000) {
+    const candidates = [activeRelayUrl, activeRelayUrl === CLOUD_RELAY_URL ? LOCAL_RELAY_URL : CLOUD_RELAY_URL];
+    let lastError = null;
+
+    for (const base of candidates) {
+        try {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), timeoutMs);
+            const res = await fetch(`${base}${endpoint}`, {
+                ...options,
+                signal: controller.signal
+            });
+            clearTimeout(timer);
+            activeRelayUrl = base;
+            return res;
+        } catch (err) {
+            lastError = err;
+            console.warn(`[NetWatch] Could not connect to relay at ${base}${endpoint}, trying fallback...`);
+        }
+    }
+    throw lastError || new Error('Relay server unreachable on both cloud and localhost.');
+}
+
 const PIN_SALT = 'NetWatch-FamilyGuardian-Salt-v3';
 const DEFAULT_PIN_HASH = '975b5a4dd484a13345133b7a8fd9a325cee974868a45104f433027e4306162e7'; // '0000'
 
@@ -116,7 +142,7 @@ let deviceConfig = {
     },
     parentState: {
         pairedDeviceId: null,
-        relayUrl: RELAY_BASE_URL
+        relayUrl: CLOUD_RELAY_URL
     }
 };
 
@@ -166,7 +192,7 @@ async function initChildMode() {
 
     // Register with Relay
     try {
-        const res = await fetch(`${RELAY_BASE_URL}/api/child/register`, {
+        const res = await fetchRelay('/api/child/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -203,7 +229,7 @@ async function flushChildTelemetry() {
             stats: deviceConfig.childState.stats
         };
 
-        const res = await fetch(`${RELAY_BASE_URL}/api/child/telemetry`, {
+        const res = await fetchRelay('/api/child/telemetry', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -533,7 +559,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         // CSV Audit Download Trigger for Parent
         if (request.type === 'DOWNLOAD_CHILD_CSV') {
-            const downloadUrl = `${request.relayUrl}/api/parent/export-csv?deviceId=${encodeURIComponent(request.deviceId)}`;
+            const base = request.relayUrl || activeRelayUrl;
+            const downloadUrl = `${base}/api/parent/export-csv?deviceId=${encodeURIComponent(request.deviceId)}`;
             chrome.downloads.download({
                 url: downloadUrl,
                 filename: `netwatch_child_audit_${request.deviceId}.csv`,

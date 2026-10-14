@@ -3,9 +3,33 @@
  * Swiss Editorial Bento Controller for popup.html
  * Dynamically binds data to the Warm Paper & Ink aesthetic
  */
-
 document.addEventListener('DOMContentLoaded', () => {
-    const RELAY_BASE_URL = 'http://localhost:3000';
+    const CLOUD_RELAY_URL = 'https://netwatch-w7c2.onrender.com';
+    const LOCAL_RELAY_URL = 'http://localhost:3000';
+    let activeRelayUrl = CLOUD_RELAY_URL;
+
+    async function fetchRelay(endpoint, options = {}, timeoutMs = 4000) {
+        const candidates = [activeRelayUrl, activeRelayUrl === CLOUD_RELAY_URL ? LOCAL_RELAY_URL : CLOUD_RELAY_URL];
+        let lastError = null;
+
+        for (const base of candidates) {
+            try {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), timeoutMs);
+                const res = await fetch(`${base}${endpoint}`, {
+                    ...options,
+                    signal: controller.signal
+                });
+                clearTimeout(timer);
+                activeRelayUrl = base;
+                return res;
+            } catch (err) {
+                lastError = err;
+                console.warn(`[NetWatch Popup] Could not reach relay at ${base}${endpoint}, trying fallback...`);
+            }
+        }
+        throw lastError || new Error('Relay server unreachable on both cloud and localhost.');
+    }
 
     // Header Elements
     const headerRoleTag = document.getElementById('headerRoleTag');
@@ -298,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
         parentPairError.style.color = 'var(--color-ink-muted)';
 
         try {
-            const res = await fetch(`${RELAY_BASE_URL}/api/parent/pair`, {
+            const res = await fetchRelay('/api/parent/pair', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ pairingCode: code })
@@ -324,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 parentPairError.style.color = 'var(--color-terracotta)';
             }
         } catch (err) {
-            parentPairError.textContent = 'Could not connect to Relay Server at ' + RELAY_BASE_URL;
+            parentPairError.textContent = 'Could not connect to Relay Server (cloud or localhost).';
             parentPairError.style.color = 'var(--color-terracotta)';
         }
     }
@@ -385,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchParentDeviceData(deviceId) {
         if (!deviceId) return;
         try {
-            const res = await fetch(`${RELAY_BASE_URL}/api/parent/device?deviceId=${encodeURIComponent(deviceId)}`);
+            const res = await fetchRelay(`/api/parent/device?deviceId=${encodeURIComponent(deviceId)}`);
             if (!res.ok) return;
             const data = await res.json();
             if (!data.success || !data.device) return;
@@ -499,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
         parentPolicyFeedback.className = 'feedback-msg';
 
         try {
-            const res = await fetch(`${RELAY_BASE_URL}/api/parent/update-policy`, {
+            const res = await fetchRelay('/api/parent/update-policy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -525,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 parentPolicyFeedback.className = 'feedback-msg error';
             }
         } catch (err) {
-            parentPolicyFeedback.textContent = 'Could not reach Relay Server.';
+            parentPolicyFeedback.textContent = 'Could not reach Relay Server (cloud or localhost).';
             parentPolicyFeedback.className = 'feedback-msg error';
         }
     });
@@ -542,14 +566,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         chrome.runtime.sendMessage({
             type: 'DOWNLOAD_CHILD_CSV',
-            relayUrl: RELAY_BASE_URL,
+            relayUrl: activeRelayUrl,
             deviceId: activePairedDeviceId
         }, (res) => {
             parentDownloadAuditBtn.disabled = false;
             if (res && res.success) {
                 setStatus('Child audit export downloaded successfully!');
             } else {
-                const exportUrl = `${RELAY_BASE_URL}/api/parent/export-csv?deviceId=${encodeURIComponent(activePairedDeviceId)}`;
+                const exportUrl = `${activeRelayUrl}/api/parent/export-csv?deviceId=${encodeURIComponent(activePairedDeviceId)}`;
                 chrome.tabs.create({ url: exportUrl });
                 setStatus('Audit report opened in download tab.');
             }

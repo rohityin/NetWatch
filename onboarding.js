@@ -1,6 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
     let selectedRole = null;
-    let relayUrl = 'http://localhost:3000';
+    const CLOUD_RELAY_URL = 'https://netwatch-w7c2.onrender.com';
+    const LOCAL_RELAY_URL = 'http://localhost:3000';
+    let activeRelayUrl = CLOUD_RELAY_URL;
+
+    async function fetchRelay(endpoint, options = {}, timeoutMs = 4000) {
+        const candidates = [activeRelayUrl, activeRelayUrl === CLOUD_RELAY_URL ? LOCAL_RELAY_URL : CLOUD_RELAY_URL];
+        let lastError = null;
+
+        for (const base of candidates) {
+            try {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), timeoutMs);
+                const res = await fetch(`${base}${endpoint}`, {
+                    ...options,
+                    signal: controller.signal
+                });
+                clearTimeout(timer);
+                activeRelayUrl = base;
+                return res;
+            } catch (err) {
+                lastError = err;
+                console.warn(`[NetWatch Onboarding] Could not connect to relay at ${base}${endpoint}, trying fallback...`);
+            }
+        }
+        throw lastError || new Error('Relay server unreachable on both cloud and localhost.');
+    }
+
     let childPollTimer = null;
     let pairedDevice = null;
     let selectedPolicyMode = 'STRICT';
@@ -215,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         parentPairStatus.style.color = 'var(--color-ink-muted)';
 
         try {
-            const res = await fetch(`${relayUrl}/api/parent/pair`, {
+            const res = await fetchRelay('/api/parent/pair', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ pairingCode: code })
@@ -239,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 parentPairStatus.style.color = 'var(--color-terracotta)';
             }
         } catch (err) {
-            parentPairStatus.textContent = 'Could not connect to Relay Server at ' + relayUrl;
+            parentPairStatus.textContent = 'Could not connect to Relay Server (Cloud or Localhost).';
             parentPairStatus.style.color = 'var(--color-terracotta)';
         }
     });
@@ -266,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (pairedDevice) {
             try {
-                await fetch(`${relayUrl}/api/parent/update-policy`, {
+                await fetchRelay('/api/parent/update-policy', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

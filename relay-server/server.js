@@ -7,12 +7,54 @@
 
 const http = require('http');
 const url = require('url');
+const fs = require('fs');
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
+const DATA_FILE = path.join(__dirname, 'registry.json');
 
-// In-Memory Device & Family Registry
+// Device & Family Registry
 const devices = new Map(); // deviceId -> DeviceState
 const pairingCodes = new Map(); // 6-digit code -> deviceId
+
+// Load persisted registry on startup
+function loadRegistry() {
+    try {
+        if (fs.existsSync(DATA_FILE)) {
+            const raw = fs.readFileSync(DATA_FILE, 'utf8');
+            const data = JSON.parse(raw);
+            if (data.devices) {
+                for (const [id, dev] of Object.entries(data.devices)) {
+                    devices.set(id, dev);
+                    if (dev.pairingCode) {
+                        pairingCodes.set(dev.pairingCode, id);
+                    }
+                }
+                console.log(`[Relay] Restored ${devices.size} device records from ${DATA_FILE}`);
+            }
+        }
+    } catch (err) {
+        console.warn('[Relay] Failed to load registry file, starting clean:', err.message);
+    }
+}
+
+// Debounced persist to disk
+let saveTimer = null;
+function saveRegistry() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+        try {
+            const data = {
+                devices: Object.fromEntries(devices)
+            };
+            fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
+        } catch (err) {
+            console.warn('[Relay] Failed to persist registry:', err.message);
+        }
+    }, 500);
+}
+
+loadRegistry();
 
 function generatePairingCode() {
     let code;
@@ -116,6 +158,7 @@ const server = http.createServer(async (req, res) => {
                 };
                 devices.set(deviceId, device);
                 pairingCodes.set(pairingCode, deviceId);
+                saveRegistry();
                 console.log(`[Relay] Registered new child device ${deviceId} with pairing code: ${pairingCode}`);
             } else {
                 device.lastHeartbeat = Date.now();
@@ -154,6 +197,8 @@ const server = http.createServer(async (req, res) => {
                 device.browsingHistory = [...visits, ...device.browsingHistory].slice(0, 1000);
             }
 
+            saveRegistry();
+
             // Return current active policy so child enforces latest parent settings immediately
             return sendJson(res, 200, {
                 success: true,
@@ -178,6 +223,7 @@ const server = http.createServer(async (req, res) => {
 
             const device = devices.get(deviceId);
             device.isPaired = true;
+            saveRegistry();
             console.log(`[Relay] Parent successfully paired with device ${deviceId}!`);
 
             return sendJson(res, 200, {
@@ -243,6 +289,7 @@ const server = http.createServer(async (req, res) => {
                 if (typeof policy.pauseInternet === 'boolean') device.policy.pauseInternet = policy.pauseInternet;
             }
 
+            saveRegistry();
             console.log(`[Relay] Parent updated policy for ${deviceId}:`, device.policy);
             return sendJson(res, 200, { success: true, policy: device.policy });
         }
