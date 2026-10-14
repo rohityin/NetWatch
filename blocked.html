@@ -50,6 +50,14 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
+    .blocked-logo-img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 14px rgba(24, 22, 21, 0.16));
+      margin-bottom: 2px;
+    }
+
     .blocked-title {
       font-family: var(--font-serif);
       font-size: 24px;
@@ -130,13 +138,7 @@
     <div class="archival-grain-line"></div>
 
     <div class="blocked-content">
-      <div class="blocked-icon-box">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          <path d="M12 8v4"></path>
-          <path d="M12 16h.01"></path>
-        </svg>
-      </div>
+      <img src="images/logo.png" alt="NetWatch Shield Logo" class="blocked-logo-img">
 
       <h1 id="title" class="blocked-title">NetWatch Guardian: Access Paused</h1>
       <div id="badge" class="editorial-badge">AI Companion Bot</div>

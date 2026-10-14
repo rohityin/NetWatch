@@ -129,6 +129,22 @@ body {
   flex-shrink: 0;
 }
 
+.brand-logo-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(24, 22, 21, 0.15));
+  flex-shrink: 0;
+}
+
+.welcome-logo-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(24, 22, 21, 0.15));
+  margin-bottom: 6px;
+}
+
 .brand-title-wrap {
   display: flex;
   align-items: center;

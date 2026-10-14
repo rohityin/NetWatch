@@ -1,4 +1,8 @@
-# 🛡️ NetWatch: Unified Family AI Guardian
+<p align="center">
+  <img src="images/logo.png" width="128" height="128" alt="NetWatch Shield Logo">
+</p>
+
+# NetWatch: Unified Family AI Guardian
 
 *A unified, role-adaptive Chrome extension and parental command center designed to protect children in the age of AI, synthetic companions, deepfakes, and prompt PII harvesting.*
 

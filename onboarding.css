@@ -97,6 +97,13 @@ body {
   line-height: 1;
 }
 
+.onboarding-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(24, 22, 21, 0.15));
+}
+
 .logo h1 {
   font-family: var(--font-serif);
   font-size: 22px;

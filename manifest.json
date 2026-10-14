@@ -58,7 +58,8 @@
       "resources": [
         "blacklist.txt",
         "blocked.html",
-        "blocked.js"
+        "blocked.js",
+        "images/*"
       ],
       "matches": [
         "<all_urls>"
