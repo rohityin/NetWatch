@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "NetWatch: Family AI Guardian",
   "version": "3.0.0",
-  "description": "Unified AI child safety and parental command center. Choose Child Shield or Parent Command Center role during setup.",
+  "description": "Protects children using AI: removes personal info from ChatGPT prompts, blocks addictive AI companion chat apps, and gives parents a live safety dashboard.",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

@@ -26,8 +26,8 @@
 ### [0:00 - 0:30] The Hook: The Hidden Threat of AI for Kids
 - **Visual**: Show news headlines or a graphic illustrating AI companion dependency and prompt PII harvesting. Or camera on presenter holding up a phone/laptop.
 - **Voiceover**:
-  > *"Generative AI is transforming how children learn, but it’s also creating an unprecedented digital crisis. Today, millions of kids spend hours talking to synthetic AI companions—forming dangerous emotional attachments, sharing sensitive home addresses and phone numbers in chat prompts, and receiving unfiltered, unsupervised advice.*
-  > *Legacy parental controls only block static URLs—they have zero visibility into what happens inside an AI prompt. That’s why we built **NetWatch: Family AI Guardian**."*
+  > *"Kids love using AI tools like ChatGPT for homework and curiosity. But it creates new digital risks: kids typing their phone numbers and home addresses into chat prompts, getting hooked on manipulative AI companion chatbots on Character.ai, or turning to chatbots during mental health crises.*
+  > *Traditional website blockers can't see what kids type inside an AI chat box. That’s why we built **NetWatch: Family AI Guardian**."*
 
 ---
 

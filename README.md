@@ -4,24 +4,24 @@
 
 # NetWatch: Unified Family AI Guardian
 
-*A unified, role-adaptive Chrome extension and parental command center designed to protect children in the age of AI, synthetic companions, deepfakes, and prompt PII harvesting.*
+*A Chrome extension that stops kids from sharing private personal info in ChatGPT, blocks manipulative AI companion chat apps, and gives parents a real-time safety dashboard with remote controls.*
 
 ---
 
 ## 🌟 The Single-Extension Architecture
 
-Rather than maintaining separate extensions, **NetWatch is a single, unified extension** that dynamically adapts its behavior, UI, and security controls based on the role selected during the **Onboarding Wizard**:
+Rather than forcing families to install two different extensions, **NetWatch is a single unified extension** that adapts based on the role chosen during the **Setup Wizard**:
 
 ```mermaid
 flowchart TD
-    EXT["NetWatch Extension<br/>(Single Unpacked Root Directory)"]
+    EXT["NetWatch Extension<br/>(Single Unpacked Folder)"]
     ONBOARD["Interactive Setup Wizard<br/>(onboarding.html)"]
     EXT -->|First Install / Launch| ONBOARD
 
-    ONBOARD -->|Select Child Shield| ROLE_CHILD["👶 CHILD MODE<br/>• Pre-navigation threat interception<br/>• In-page PII & crisis prompt guardian<br/>• 636k domain blacklist engine<br/>• Background telemetry push (3.5s)<br/>• Master PIN locked UI"]
-    ONBOARD -->|Select Parent Hub| ROLE_PARENT["👨‍👩‍👧 PARENT MODE<br/>• Live AI Safety Index (0-100)<br/>• Real-time child threat stream<br/>• Remote policy & mode dispatch<br/>• Bedtime Internet Pause switch<br/>• CSV safety audit downloads<br/>• Passive browsing (0% interference)"]
+    ONBOARD -->|Select Child Shield| ROLE_CHILD["👶 CHILD'S COMPUTER<br/>• Scans prompts in ChatGPT/Claude to remove personal info<br/>• Blocks AI companion chat apps (Character.ai, Replika)<br/>• Freezes screen & shows 988 Crisis Lifeline on self-harm words<br/>• Fast 636k domain blocker with zero browser lag<br/>• Locked with Parent Master PIN"]
+    ONBOARD -->|Select Parent Hub| ROLE_PARENT["👨‍👩‍👧 PARENT'S COMPUTER<br/>• Live AI Safety Score (0 to 100)<br/>• Instant alert feed of blocked threats<br/>• Change rules remotely in 3.5 seconds<br/>• One-click Bedtime Internet Pause switch<br/>• Download spreadsheet report (CSV)<br/>• Parent's own browsing is 100% unrestricted"]
 
-    ROLE_CHILD -->|Telemetry & Policy Pull| RELAY["NetWatch Relay Server<br/>(http://localhost:3000)"]
+    ROLE_CHILD -->|Telemetry & Policy Sync| RELAY["NetWatch Relay Server<br/>(http://localhost:3000)"]
     ROLE_PARENT -->|Pairing & Remote Controls| RELAY
 ```
 

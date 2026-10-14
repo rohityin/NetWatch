@@ -12,21 +12,21 @@
 
 ---
 
-### Slide 2: The Sociotechnical Crisis
-- **3 Key Pain Points**:
-  1. **Synthetic Companionship & Grooming**: Unregulated bots (Character.ai, Replika) simulating unconditional emotional intimacy, leading to dependency and psychological detachment.
-  2. **Prompt PII Harvesting**: Sensitive personal data (names, home addresses, phone numbers) routinely typed into LLMs and absorbed into AI training logs.
-  3. **The Mental Health Blindspot**: Kids in distress turning to chatbots that hallucinate or fail to deliver critical crisis lifelines.
-- **Presenter Note**: *"Traditional URL filters cannot read what kids type into ChatGPT, and they treat AI companionship as ordinary web browsing."*
+### Slide 2: The Real Dangers Kids Face with AI
+- **3 Critical Problems**:
+  1. **Manipulative AI Companions**: Unregulated chatbots (Character.ai, Replika) programmed to simulate romance and friendship, isolating kids from real friends and family.
+  2. **Accidental Personal Data Leaks**: Kids typing home addresses, phone numbers, and school names into ChatGPT prompts that get logged and stored forever on AI company servers.
+  3. **The Crisis Blindspot**: Vulnerable teens in distress asking chatbots for self-harm advice instead of getting real human medical or crisis support.
+- **Presenter Note**: *"Traditional URL blockers only check if a website is adult content. They cannot read what kids type inside an AI chat box or detect when a chatbot is emotionally manipulating them."*
 
 ---
 
 ### Slide 3: Introducing NetWatch
-- **Core Value Proposition**: A unified, role-adaptive Manifest V3 browser guardian that empowers kids to explore AI safely while giving parents transparent, real-time command.
-- **The Dual-Role Architecture**:
-  - 👶 **Child Protection Shield**: Active in-page prompt guardian, synchronous PII sanitizer, companion blocking, crisis lifeline.
-  - 👨‍👩‍👧 **Parent Command Center**: Dynamic AI Safety Index (0-100), real-time threat stream, remote policy push, bedtime pause switch.
-- **Key Metric**: Sub-3.5 second remote policy synchronization.
+- **Core Value Proposition**: A single Chrome extension that makes AI safe for children while giving parents real-time visibility and control.
+- **The Two Clear Roles**:
+  - 👶 **Child Protection Shield**: Removes personal data from prompts in real time, blocks addictive AI companion sites, and provides immediate 988 Crisis Lifelines.
+  - 👨‍👩‍👧 **Parent Command Center**: Shows a live AI Safety Score (0-100), streams blocked threats, and lets parents change rules or pause the internet in 3.5 seconds.
+- **Key Metric**: Sub-3.5 second remote policy sync.
 
 ---
 
