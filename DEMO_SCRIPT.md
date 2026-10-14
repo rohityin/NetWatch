@@ -1,6 +1,6 @@
 # 🎬 NetWatch: Hackathon Video Demo Script (2 - 3 Minutes)
 
-> **Goal**: A high-impact, professional video demo for Devpost judges showing the problem, live dual-device interaction, in-page prompt interception, and parental command center.
+> **Goal**: A high-impact, professional video demo for Devpost judges showing how NetWatch tracks online activity, enforces parental rules, and shields private data inside AI prompts.
 
 ---
 
@@ -23,62 +23,54 @@
 
 ## ⏱️ Video Timeline & Narration
 
-### [0:00 - 0:30] The Hook: The Hidden Threat of AI for Kids
-- **Visual**: Show news headlines or a graphic illustrating AI companion dependency and prompt PII harvesting. Or camera on presenter holding up a phone/laptop.
+### [0:00 - 0:30] The Hook: The Dual Challenge of Modern Parenting
+- **Visual**: Show graphics of modern web browsing, late-night screen time, and AI chatbots. Or camera on presenter holding up a laptop.
 - **Voiceover**:
-  > *"Kids love using AI tools like ChatGPT for homework and curiosity. But it creates new digital risks: kids typing their phone numbers and home addresses into chat prompts, getting hooked on manipulative AI companion chatbots on Character.ai, or turning to chatbots during mental health crises.*
-  > *Traditional website blockers can't see what kids type inside an AI chat box. That’s why we built **NetWatch: Family AI Guardian**."*
+  > *"Parents today face a double challenge: keeping track of their kids' online browsing activity, and protecting them from the new dangers of Generative AI. Kids spend hours on the web for homework, but they also stumble upon harmful sites, stay up late browsing, and type private home addresses and phone numbers into AI prompts on ChatGPT.*
+  > *Traditional website blockers only check URLs—they can't help parents track overall digital safety and have zero visibility into AI chat prompts. That’s why we built **NetWatch**: a complete parental command center and activity tracker, with an intelligent in-page AI shield built right in."*
 
 ---
 
 ### [0:30 - 1:00] The Architecture & Setup: One Extension, Two Roles
 - **Visual**: Show the NetWatch setup wizard (`onboarding.html`). Select "Child Device" on the left window, and "Parent Command Center" on the right window.
 - **Voiceover**:
-  > *"NetWatch is a single, unified Manifest V3 Chrome extension that dynamically adapts based on the role you choose. On the child's laptop, it acts as a real-time protection shield. On the parent's device, it becomes an executive AI Command Center.*
-  > *Let's pair them: the child's screen shows a 6-digit family pairing code. The parent enters it once, sets a master 4-digit PIN, and both devices are instantly connected through our lightweight relay."*
+  > *"NetWatch is a single, unified Chrome extension. On the child's computer, it logs browsing activity and enforces safety shields. On the parent's laptop, it becomes an executive command center.*
+  > *Pairing is effortless: the child's screen shows a 6-digit family pairing code. The parent enters it once, sets a 4-digit Master PIN, and both devices connect in seconds through our lightweight relay."*
 
 ---
 
-### [1:00 - 1:40] Live Demo 1: In-Page AI Prompt & PII Guardian
-- **Visual**: On the left window (Child), navigate to ChatGPT or an LLM prompt box.
+### [1:00 - 1:40] Live Demo 1: The AI Prompt & Personal Info Protector
+- **Visual**: On the left window (Child), navigate to ChatGPT.
   Type: `"Hi! Can you help me with my homework? My phone number is 415-555-0199 and I live at 742 Evergreen Terrace."`
   Show the NetWatch warning toast appear immediately!
   Show the presenter click **"✨ Sanitize Prompt"**.
   The text immediately transforms to: `"Hi! Can you help me with my homework? My phone number is [REDACTED PHONE NUMBER] and I live at [REDACTED STREET ADDRESS]."`
 - **Voiceover**:
-  > *"Watch what happens when a child uses an AI tool. Here, the child accidentally enters their real phone number and home address into an LLM prompt. Before the message can be sent, NetWatch intercepts it in real-time.*
-  > *With one click on 'Sanitize Prompt', our virtual DOM synchronization engine replaces sensitive PII with safe redactions—preventing private family data from being harvested by AI training servers.*
-  > *Even if the child hits the Enter key or clicks Send rapidly, our synchronous event capture halts transmission in its tracks."*
+  > *"Here's our flagship AI feature in action. When a child types their real phone number and home address into ChatGPT, NetWatch intercepts it in real time.*
+  > *Even if the child hits Enter or clicks Send, our synchronous event engine halts transmission before the data leaves the computer. With one click on 'Sanitize Prompt', the private info is safely redacted without breaking ChatGPT's internal virtual DOM.*
+  > *NetWatch also blocks manipulative AI companion apps like Character.ai with kid-friendly educational guidance, and freezes the screen with the 988 Crisis Lifeline if a child inputs self-harm keywords."*
 
 ---
 
-### [1:40 - 2:05] Live Demo 2: Synthetic Companion & Crisis Interception
-- **Visual**: On the left window (Child), try to navigate to `character.ai` or type a crisis statement.
-  Show the browser instantly redirect to `blocked.html` with its warm, educational explanation.
-  Show the crisis intervention modal demonstrating the 988 Lifeline support dialog.
-- **Voiceover**:
-  > *"Next, the child tries to visit an unregulated AI companion site. NetWatch's pre-navigation engine intercepts the request before the page even loads, redirecting to an educational, kid-friendly guide that explains why synthetic bots are computer algorithms, not real friends.*
-  > *And crucially: if a child in distress enters crisis or self-harm keywords into an AI, NetWatch immediately freezes the screen and offers direct access to the 988 Suicide & Crisis Lifeline."*
-
----
-
-### [2:05 - 2:40] Live Demo 3: The Parent Command Center & Remote Control
+### [1:40 - 2:30] Live Demo 2: The Parent Command Center & Activity Tracking
 - **Visual**: Pan over to the right window (Parent).
-  Show the **AI Safety Index** dynamically updated (e.g. 88/100).
-  Show the **Live Threat Stream** showing the exact sanitized PII and blocked companion events.
-  Toggle the mode from **Strict** to **Study Only**, and switch on **Pause Child's Internet**.
+  Show the **AI Safety Score** dynamically updated (e.g. 88/100).
+  Show the **Live Threat & Activity Stream** displaying exact events and visited sites with timestamps.
+  Switch mode from **Strict** to **Study Only** (homework sites only).
+  Toggle **Pause Child's Internet**.
   Click **"Push Policy Update"**.
-  Show the left window immediately updating to reflect the new policy within 3 seconds!
-  Click **"Download Child Safety Audit (CSV)"** to show the instant report download.
+  Show the left window immediately locking into the bedtime/pause screen within 3 seconds!
+  Click **"Download Child Safety Audit (CSV)"** to show the spreadsheet downloading.
 - **Voiceover**:
-  > *"Now look at the Parent Command Center on the right. In real time, the parent sees their child's AI Safety Index, along with a live stream of intercepted threats.*
-  > *With zero disruption to the parent's own browsing, the parent can remotely switch policies—from Strict to Study Only—or pause the child's internet during bedtime with a single click. Changes sync in under 3.5 seconds.*
-  > *Parents can also export a complete timestamped CSV safety audit for family check-ins."*
+  > *"Now let's look at the Parent Command Center on the right. Parents get full visibility into their child's online activity. You can see a live digital safety score, and a real-time stream of visited websites and blocked threats.*
+  > *Parents can change rules remotely in under 3.5 seconds: switch to 'Study Only Mode' during homework hours, add custom blocked websites, or toggle 'Pause Child's Internet' at bedtime.*
+  > *Parents can also download a complete timestamped CSV safety audit to review all browsing history and safety interventions during family check-ins."*
 
 ---
 
-### [2:40 - 3:00] Closing & Vision
-- **Visual**: Show NetWatch extension icon, GitHub repository, and clean presentation slide.
+### [2:30 - 3:00] Closing & Summary
+- **Visual**: Show NetWatch extension icon, GitHub repository, and clean summary slide.
 - **Voiceover**:
-  > *"NetWatch is 100% Manifest V3 compliant, open-source, and engineered with zero heavy bloat to protect children’s privacy and mental health in the age of generative AI.*
-  > *Thank you to STEMSisterz and the Child Safety in AI hackathon for championing this mission. Together, we can make AI safe, empowering, and protective for the next generation."*
+  > *"NetWatch gives parents the complete visibility they need to keep track of their children's online browsing activity, combined with next-generation prompt privacy to keep them safe in the age of AI.*
+  > *It's 100% Manifest V3 compliant, open-source, and tamper-proof with Master PIN protection.*
+  > *Thank you to STEMSisterz and the Child Safety in AI hackathon for supporting safer technology for the next generation!"*

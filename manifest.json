@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "NetWatch: Family AI Guardian",
   "version": "3.0.0",
-  "description": "Protects children using AI: removes personal info from ChatGPT prompts, blocks addictive AI companion chat apps, and gives parents a live safety dashboard.",
+  "description": "Family safety guardian & parental command center. Tracks children's online activity, enforces web rules & bedtimes, and shields private info in AI prompts.",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -19,28 +19,48 @@
   "content_scripts": [
     {
       "matches": [
+        "*://chatgpt.com/*",
         "*://*.chatgpt.com/*",
+        "*://openai.com/*",
         "*://*.openai.com/*",
+        "*://claude.ai/*",
         "*://*.claude.ai/*",
-        "*://*.gemini.google.com/*",
+        "*://gemini.google.com/*",
+        "*://character.ai/*",
         "*://*.character.ai/*",
+        "*://janitorai.com/*",
         "*://*.janitorai.com/*",
+        "*://replika.com/*",
         "*://*.replika.com/*",
+        "*://replika.ai/*",
         "*://*.replika.ai/*",
+        "*://talkie-ai.com/*",
         "*://*.talkie-ai.com/*",
+        "*://crushon.ai/*",
         "*://*.crushon.ai/*",
+        "*://civitai.com/*",
         "*://*.civitai.com/*",
+        "*://perchance.org/*",
         "*://*.perchance.org/*",
+        "*://poe.com/*",
         "*://*.poe.com/*",
+        "*://deepseek.com/*",
         "*://*.deepseek.com/*",
-        "*://*.copilot.microsoft.com/*",
+        "*://copilot.microsoft.com/*",
+        "*://brainly.com/*",
         "*://*.brainly.com/*",
+        "*://coursehero.com/*",
         "*://*.coursehero.com/*",
+        "*://spicychat.ai/*",
         "*://*.spicychat.ai/*",
-        "*://*.chai.ml/*"
+        "*://chai.ml/*",
+        "*://*.chai.ml/*",
+        "*://localhost/*",
+        "*://127.0.0.1/*"
       ],
+      "all_frames": true,
       "js": ["prompt_guardian.js"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ],
   "permissions": [

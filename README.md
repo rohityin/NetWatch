@@ -4,7 +4,7 @@
 
 # NetWatch: Unified Family AI Guardian
 
-*A Chrome extension that stops kids from sharing private personal info in ChatGPT, blocks manipulative AI companion chat apps, and gives parents a real-time safety dashboard with remote controls.*
+*A complete family safety guardian and parental command center that helps parents monitor their children's online browsing activity, enforce digital curfews, block harmful sites, and protect private personal information inside AI prompts.*
 
 ---
 
@@ -18,8 +18,8 @@ flowchart TD
     ONBOARD["Interactive Setup Wizard<br/>(onboarding.html)"]
     EXT -->|First Install / Launch| ONBOARD
 
-    ONBOARD -->|Select Child Shield| ROLE_CHILD["👶 CHILD'S COMPUTER<br/>• Scans prompts in ChatGPT/Claude to remove personal info<br/>• Blocks AI companion chat apps (Character.ai, Replika)<br/>• Freezes screen & shows 988 Crisis Lifeline on self-harm words<br/>• Fast 636k domain blocker with zero browser lag<br/>• Locked with Parent Master PIN"]
-    ONBOARD -->|Select Parent Hub| ROLE_PARENT["👨‍👩‍👧 PARENT'S COMPUTER<br/>• Live AI Safety Score (0 to 100)<br/>• Instant alert feed of blocked threats<br/>• Change rules remotely in 3.5 seconds<br/>• One-click Bedtime Internet Pause switch<br/>• Download spreadsheet report (CSV)<br/>• Parent's own browsing is 100% unrestricted"]
+    ONBOARD -->|Select Child Shield| ROLE_CHILD["👶 CHILD'S COMPUTER<br/>• Logs browsing activity & syncs telemetry<br/>• Scans prompts in ChatGPT/Claude to remove personal info<br/>• Blocks AI companion chat apps (Character.ai, Replika)<br/>• Freezes screen & shows 988 Crisis Lifeline on self-harm words<br/>• Fast 636k domain blocker with zero browser lag<br/>• Locked with Parent Master PIN"]
+    ONBOARD -->|Select Parent Hub| ROLE_PARENT["👨‍👩‍👧 PARENT'S COMPUTER<br/>• Real-time child browsing & threat stream<br/>• Live AI Safety Score (0 to 100)<br/>• Change rules remotely in 3.5 seconds<br/>• One-click Bedtime Internet Pause switch<br/>• Download full browsing & safety audit (CSV)<br/>• Parent's own browsing is 100% unrestricted"]
 
     ROLE_CHILD -->|Telemetry & Policy Sync| RELAY["NetWatch Relay Server<br/>(http://localhost:3000)"]
     ROLE_PARENT -->|Pairing & Remote Controls| RELAY

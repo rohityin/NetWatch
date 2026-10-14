@@ -57,9 +57,10 @@ Use this checklist to verify everything is 100% operational before recording you
   - Click **"Push Policy Update"**.
   - In Child Window, verify within 3.5 seconds that the policy updates or internet pause triggers on navigation!
 
-- [ ] **5. Safety Audit Export Test**:
+- [ ] **5. Browsing Activity Tracking & Safety Audit Export Test**:
+  - In Child Window, visit a couple of regular websites (e.g. `wikipedia.org`, `nationalgeographic.com`).
   - In Parent Window, click **"Download Child Safety Audit (CSV)"**.
-  - Verify that a CSV file `netwatch_child_audit_CH-XXXXX.csv` downloads cleanly with timestamped rows.
+  - Open the downloaded CSV file (`netwatch_child_audit_CH-XXXXX.csv`) and verify that both normal visited websites and blocked threat events are cleanly logged with timestamps!
 
 - [ ] **6. Master PIN Role Protection Test**:
   - In Child Window popup, click **"Switch Role / Re-run Setup"**.
@@ -71,8 +72,8 @@ Use this checklist to verify everything is 100% operational before recording you
 
 When submitting on [child-safety-in-ai.devpost.com](https://child-safety-in-ai.devpost.com):
 
-1. **Project Title**: `NetWatch: Family AI Guardian`
-2. **Tagline**: `Unified AI guardian & parental command center protecting kids from synthetic companion grooming, prompt PII leaks, and digital harm.`
+1. **Project Title**: `NetWatch: Family Safety Guardian & Parental Command Center`
+2. **Tagline**: `A comprehensive parental command center that helps parents track their children's online browsing activity, enforce web curfews, and protect private personal info inside modern AI prompts.`
 3. **Project Story Content**: Copy & paste directly from [DEVPOST_SUBMISSION.md](file:///d:/Hackathon%20Projects/NetWatch/DEVPOST_SUBMISSION.md).
 4. **Try It Out / GitHub Link**: Link to your GitHub repository for NetWatch.
 5. **Video Demo Link**: YouTube / Loom / Vimeo link (using your recording from [DEMO_SCRIPT.md](file:///d:/Hackathon%20Projects/NetWatch/DEMO_SCRIPT.md)).

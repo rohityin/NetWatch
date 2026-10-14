@@ -70,6 +70,17 @@ const server = http.createServer(async (req, res) => {
             return sendJson(res, 200, { status: 'ONLINE', timestamp: Date.now() });
         }
 
+        // Interactive AI Prompt Guardian Test Bed
+        if ((pathname === '/demo' || pathname === '/test') && method === 'GET') {
+            const fs = require('fs');
+            const path = require('path');
+            const demoPath = path.join(__dirname, '..', 'test_ai_shield.html');
+            if (fs.existsSync(demoPath)) {
+                res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                return res.end(fs.readFileSync(demoPath, 'utf8'));
+            }
+        }
+
         // -------------------------------------------------------------
         // CHILD EXTENSION ENDPOINTS
         // -------------------------------------------------------------
